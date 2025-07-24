@@ -1,10 +1,16 @@
-function App() {
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Business from './pages/Business'
+import Register from './pages/Register'
 
+function App() {
   return (
-    <div className={"text-green-500"}>
-        Hello
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Register />} />
+        <Route path="/Business" element={<Business />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
