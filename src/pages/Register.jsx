@@ -33,7 +33,9 @@ export default function Register(){
                 phone: formData.phone,
                 password: formData.password,
                 
-            });
+            },
+            { withCredentials: true}
+        );
             alert("Registration successful! please check your email for OTP");
             console.log("Form Data:", formData);
         } catch (error) {
@@ -41,7 +43,8 @@ export default function Register(){
             alert("Registration failed." + error.response?.data?.error || "please try again later");
             setformData((prev) => ({
                 ...prev,
-                otp: "",
+                otp:"",
+                
             }));
         }
     };
