@@ -52,7 +52,7 @@ export default function Business(){
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter your email ID' className='w-full border border-gray-300 p-3 rounded '/>
                 <button onClick={handleProceed} className='w-full bg-black text-white py-3 rounded hover:bg-gray-200'> Proceed </button>
                 <div className='text-sm mt-4 text-gray-600'>New to shipU? {" "}
-                    <a href='#' className='text-blue-600 underline'>Create an Account</a>
+                    <a href='/' className='text-blue-600 underline'>Create an Account</a>
                 </div>
 
                 <div className='text-sm mt-2 text-blue-600 flex flex-wrap flex-col'>
