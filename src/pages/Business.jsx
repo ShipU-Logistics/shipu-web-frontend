@@ -2,13 +2,37 @@ import react from 'react';
 import { useState } from 'react';
 
 export default function Business(){
-    const [email, setEmail] = useState('')
-    const handleProceed = () => {
-        alert('Email entered: ${email}');
-    };
-    const handleSubmit = (e)=>{
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    //const handleProceed = () => {
+      //  alert('Email entered: ${email}');
+    //};
+    const handleSubmit = async (e)=>{
         e.preventDefault();
-        handleProceed();
+        //handleProceed();
+        try{
+            const res = await fetch("http://localhost:4000/api/login",{
+                method:"POST",
+                headers: {
+                    "Content-Type":"application/json",
+                },
+                credentials:"include",
+                body:JSON.stringify({
+                    email,
+                    password,
+                }),
+            });
+            const data = await res.json();
+            if(res.ok){
+                alert("Login Successful");
+            }
+            else{
+                alert(data.error || "Login Failed");
+        }
+        } catch(error){
+            console.error("Login error:", error);
+            alert("Login Failed: " + error.message);
+        }
     };
     return (
     <>
@@ -49,10 +73,12 @@ export default function Business(){
             <h2 className=' text-xl font-semibold mb-4 text-center'>Login to your account </h2>
 
             <form onSubmit={handleSubmit} className='space-y-4'>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter your email ID' className='w-full border border-gray-300 p-3 rounded '/>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter your email ID' className='w-full border border-gray-300 p-3 rounded  '/>
+
+                <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='Enter Your Password' className='w-full border border-gray-300 p-3 rounded '/>
     
                 
-                <button onClick={handleProceed} className='w-full bg-black text-white py-3 rounded hover:bg-gray-200'> Proceed </button>
+                <button type="submit"className='w-full bg-black text-white py-3 rounded hover:bg-gray-200'> Proceed </button>
                 <div className='text-sm mt-4 text-gray-600'>New to shipU? {" "}
                     <a href='/' className='text-blue-600 underline'>Create an Account</a>
                     
