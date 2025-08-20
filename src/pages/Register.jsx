@@ -21,7 +21,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/api/register", {
+      const res = await fetch("http://localhost:4000/api/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,14 +38,14 @@ export default function Register() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("Registration successful! ",data.message);
+        alert("Registration successful!" || data.message);
         console.log("Response:", data);
       } else {
-       alert(data.error || "Registration failed");
+       alert(data.message || "Registration failed");
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("Registration failed: " + error.message);
+      alert("Registration failed: " + data.message);
     }
   };
 
@@ -148,7 +148,7 @@ export default function Register() {
 
             <p className="mt-4 text-sm text-center">
               Already have an account?{" "}
-              <a href="/Business" className="text-blue-600 font-medium">
+              <a href="/login" className="text-blue-600 font-medium">
                 Login
               </a>
             </p>

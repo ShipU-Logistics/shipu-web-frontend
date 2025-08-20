@@ -1,17 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Business from './pages/Business'
 import Register from './pages/Register'
 import TrackingSection from './pages/track-shipment';
 import Header from './components/Header';
+import Login from './pages/Login';
+import Side from './pages/Account';
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Register />} />
-        <Route path="/Business" element={<Business />} />
-        <Route path="/track-shipment" element={<TrackingSection />} />
+        <Route path="/" element={<TrackingSection />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/account" element={<Side />} />
       </Routes>
     </BrowserRouter>
   );
